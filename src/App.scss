@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
 :root {
   --primary: #ddd;
   --dark: #333;
@@ -6,7 +7,8 @@
   --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
 }
 
-body {
+
+body{
   background: #f2f2f2;
   margin: 0;
   padding: 0;
@@ -14,34 +16,45 @@ body {
   line-height: 1.5;
 }
 
+
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   scroll-behavior: smooth;
+
 }
 
-ul {
+ul{
   list-style-type: none;
   margin: 0;
   padding: 0;
   text-decoration: none;
 }
 
+
 section {
   padding: 5em 2em;
 }
+
 
 a {
   color: white;
 }
 
-@media only screen and (min-width: 1080px) {
-  .container {
-    width: 1080;
-    margin: 0 auto;
+
+
+
+@media only  screen and (min-width: 1080px){
+
+  .container{
+      width:1080;
+      margin: 0 auto;
   }
+
+
   section {
     padding: 10em 4em;
   }
-}
-/*# sourceMappingURL=App.css.map */
+
+
+  
+}//media 1080 end

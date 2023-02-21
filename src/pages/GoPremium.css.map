@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,cAAc,CAAA;EAEV,UAAU,EAAE,MAAM;CAOrB;;AATD,AAKI,cALU,CAKV,EAAE,CAAC;EACC,UAAU,EAAE,GAAG;CAClB",
+    "sources": [
+        "GoPremium.scss"
+    ],
+    "names": [],
+    "file": "GoPremium.css"
+}

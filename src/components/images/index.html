@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app"/>
+	  
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">	  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
+	  
+	  
+    <!--<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <!--<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+class="jumbotron text-center"
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+<script>
+function initComparisons() {
+  var x, i;
+  /*find all elements with an "overlay" class:*/
+  x = document.getElementsByClassName("img-comp-overlay");
+  for (i = 0; i < x.length; i++) {
+    /*once for each "overlay" element:
+    pass the "overlay" element as a parameter when executing the compareImages function:*/
+    compareImages(x[i]);
+  }
+  function compareImages(img) {
+    var slider, img, clicked = 0, w, h;
+    /*get the width and height of the img element*/
+    w = img.offsetWidth;
+    h = img.offsetHeight;
+    /*set the width of the img element to 50%:*/
+    img.style.width = (w / 2) + "px";
+    /*create slider:*/
+    slider = document.createElement("DIV");
+    slider.setAttribute("class", "img-comp-slider");
+    /*insert slider*/
+    img.parentElement.insertBefore(slider, img);
+    /*position the slider in the middle:*/
+    slider.style.top = (h / 2) - (slider.offsetHeight / 2) + "px";
+    slider.style.left = (w / 2) - (slider.offsetWidth / 2) + "px";
+    /*execute a function when the mouse button is pressed:*/
+    slider.addEventListener("mousedown", slideReady);
+    /*and another function when the mouse button is released:*/
+    window.addEventListener("mouseup", slideFinish);
+    /*or touched (for touch screens:*/
+    slider.addEventListener("touchstart", slideReady);
+    /*and released (for touch screens:*/
+    window.addEventListener("touchend", slideFinish);
+    function slideReady(e) {
+      /*prevent any other actions that may occur when moving over the image:*/
+      e.preventDefault();
+      /*the slider is now clicked and ready to move:*/
+      clicked = 1;
+      /*execute a function when the slider is moved:*/
+      window.addEventListener("mousemove", slideMove);
+      window.addEventListener("touchmove", slideMove);
+    }
+    function slideFinish() {
+      /*the slider is no longer clicked:*/
+      clicked = 0;
+    }
+    function slideMove(e) {
+      var pos;
+      /*if the slider is no longer clicked, exit this function:*/
+      if (clicked == 0) return false;
+      /*get the cursor's x position:*/
+      pos = getCursorPos(e)
+      /*prevent the slider from being positioned outside the image:*/
+      if (pos < 0) pos = 0;
+      if (pos > w) pos = w;
+      /*execute a function that will resize the overlay image according to the cursor:*/
+      slide(pos);
+    }
+    function getCursorPos(e) {
+      var a, x = 0;
+      e = e || window.event;
+      /*get the x positions of the image:*/
+      a = img.getBoundingClientRect();
+      /*calculate the cursor's x coordinate, relative to the image:*/
+      x = e.pageX - a.left;
+      /*consider any page scrolling:*/
+      x = x - window.pageXOffset;
+      return x;
+    }
+    function slide(x) {
+      /*resize the image:*/
+      img.style.width = x + "px";
+      /*position the slider:*/
+      slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
+    }
+  }
+}
+</script>	  
+	  
+	  
+	  
+	  
+    <title>Bespoke Kitchen Solutions</title>
+  </head>
+  <body>
+   <!-- <noscript>You need to enable JavaScript to run this app.</noscript>-->
+    <div id="root" class="jumbotron text-center uppercase"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+	  
+	  
+	  
+	    
+	  <nav class="navbar navbar-expand-sm bg-dark navbar-dark uppercase">
+			
+		  <!--<a class="navbar-brand" href="#"></a>-->
+				
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+					
+		  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				
+			<li>
+				
+				<a class="nav-link" href="#">Home</a>
+				
+				
+				
+			  </li>	
+				
+				
+			  <li class="nav-item">
+				  
+				   <Link class="nav-link" to="./bks-product.html">Product Offer</Link>
+				  
+				
+				
+				
+			<li class="nav-item">
+				<a class="nav-link" href="#">SERVICES</a>
+			  </li> 
+				
+				
+			<li class="nav-item">
+				<a class="nav-link" href="#">DOOR RANGES</a>
+			  </li>	
+				
+				
+			<li class="nav-item">
+				<a class="nav-link" href="#">CABINETS</a>
+			  </li>		
+				
+				
+			<li class="nav-item">
+				<a class="nav-link" href="#">TO FINISH</a>
+			  </li>		
+				
+				
+				
+			<li class="nav-item">
+				<a class="nav-link" href="#">Contact</a>
+			  </li> 	
+				
+				
+			</ul>
+		  </div>  
+	 	
+	  
+	  
+		
+		<a class="navbar-brand" href="#">REQUEST A CALL BACK</a>	
+			
+		</nav>
+	  
+	   <!--<div class="container spscetop">
+		  <div class="row">
+			  <div class="col-sm-12">
+				  <div id="demo" class="carousel slide" data-ride="carousel">
+
+  
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+  
+ 
+  <div class="carousel-inner">
+	  
+    <div class="carousel-item active" id="slideractive1">
+     <img src="Glastonbury.jpg" alt="Chicago" width="100%" height="100%">
+    </div>
+	  
+    <div class="carousel-item" id="slideractive2">
+      <img src="ShakerKitchen.jpg" alt="Chicago" width="100%" height="100%">
+    </div>
+	  
+    <div class="carousel-item" id="slideractive3">
+	  <img src="Edinburgh.jpg" alt="Chicago" width="100%" height="100%">
+    </div>
+  </div>
+  
+
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+				  
+				  
+	  
+	          </div>
+          </div>
+	  </div>-->
+	  
+	  
+	  
+	  
+	  
+<!--<div class="container container-ralitive">
+  <div class="mySlides">
+    <div class="numbertext">1 / 6</div>
+    <img src="Edinburgh.jpg" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">2 / 6</div>
+    <img src="ShakerKitchen.jpg" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">3 / 6</div>
+    <img src="Glastonbury.jpg" style="width:100%">
+  </div>
+    
+  <div class="mySlides">
+    <div class="numbertext">4 / 6</div>
+    <img src="bella-matt.jpg" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">5 / 6</div>
+    <img src="Herringbone.jpg" style="width:100%">
+  </div>
+    
+  <div class="mySlides">
+    <div class="numbertext">6 / 6</div>
+    <img src="Green_Kav.jpg" style="width:100%">
+  </div>
+    
+  <a class="prev" onclick="plusSlides(-1)">❮</a>
+  <a class="next" onclick="plusSlides(1)">❯</a>
+
+  <div class="caption-container">
+    <p id="caption"></p>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <img class="demo cursor" src="Edinburgh.jpg" style="width:100%; height:100%;" onclick="currentSlide(1)" alt="">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="ShakerKitchen.jpg" style="width:100%; height:100%;" onclick="currentSlide(2)" alt="">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Glastonbury.jpg" style="width:100%; height:100%;" onclick="currentSlide(3)" alt="">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="bella-matt.jpg" style="width:100%; height:100%;" onclick="currentSlide(4)" alt="">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="Herringbone.jpg" style="width:100%; height:100%;" onclick="currentSlide(5)" alt="">
+    </div>    
+    <div class="column">
+      <img class="demo cursor" src="Green_Kav.jpg" style="width:100%; height:100%;" onclick="currentSlide(6)" alt="">
+	  </div>
+  </div>
+</div>-->	  
+	 	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  <div class="container spscetop">
+		  <div class="row">
+			  
+			  
+			  <div class="col-sm-12 text-center">
+				<h1>OUR PRODUCT OFFER</h1>   
+			  </div>   
+			  
+			   <div class="col-sm-12">
+				     <img src="Herringbone.jpg" alt="Avatar" class="image">
+                  <div class="overlay link-text-a">
+					 
+					  <p><strong>You select, plan and design; we build and deliver. You concentrate on what you do best while we take care of the rest.</strong></p>
+					  
+					  <p>Whether you own a large or small home, we offer a complete kitchen and bedroom service to suit your needs.</p>					  
+					  
+					  <div class="product-offering">
+					  <a href="#">View our product offering ></a>
+					  </div>
+				 			 			  
+				</div>    
+			  </div>	 
+			  
+			  
+			  <!--<div class="col-sm-12 spscetop">
+				  <img src="bella-matt.jpg" alt="Avatar" class="image">
+                  <div class="overlay">
+					  <h1>BLOSSOM AVENUE</h1>
+<p>Blossom Avenue Kitchen Range provides the best solution to hassle free, pre assembled rigid cabinets with 134 stylish door frontals, drawers, handles and matching accessories to choose from.</p>
+<ul>
+<li>Fully assembled 18mm MFC cabinet.</li>
+<li>Fitted door and drawers, all hardware & matching accessories.</li>
+<li>Reliably strong and built to last. Pre alert & tracked delivery system.</li>
+<li>Delivered to your door or site on a 10/12 day lead tim</li>
+	</ul>				 			 			  
+	</div>    
+	   </div>-->	  
+			  
+			  
+			  <!--<div class="col-sm-12 spscetop">
+				  <img src="BA-Complete-Bedrooms.jpg" alt="Avatar" class="image">
+                  <div class="overlay">
+					  <h1>COMPLETE BEDROOMS</h1>
+<p>A Place for Dreams. A Place for Living.
+
+Complete bedrooms by BA is an exclusive new range of bedroom furniture made simple. A collection inspired by personal choice designed for today’s bedroom lifestyle.
+
+With stylish door design and intelligent “Clic” assembly technology our new bedroom range will offer you the flexibility to tailor the look you want.</p>		  
+		</div> 
+	   </div>-->
+			  
+			  
+		 <div class="col-sm-12 text-center spscetop">
+				<h1>OUR SERVICES</h1>   
+			  </div>   
+			  
+			   <div class="col-sm-12">
+				     <img src="VALORE-SMOOTH-FJORD-SMOOTH-LIGHT-GREY.jpg" alt="Avatar" class="image">
+                  <div class="overlay link-text-a">
+					 
+					  <p><strong>What sets Bespoke Kitchen Solutions apart from the competition?</strong></p>
+		
+					  
+					  <ul>
+<li>Fantastic product.</li>
+<li>Ability to offer you ‘made to measure’ sizes.</li>
+<li>PRONTO 48-hour despatch service.</li>
+	</ul>	
+					  
+					  <div class="product-offering">
+					  <a href="#">Find out more ></a>
+					  </div>
+				 			 			  
+				</div>    
+			  </div>	 	  
+			  
+			  
+			  
+		  
+			  
+		      <div class="col-sm-12 text-center spscetop">
+				<h1>OUR DOOR RANGES</h1>   
+			  </div>   
+			  
+			   <div class="col-sm-12">
+				     <img src="firbeck-supermatt-cashmere-600x400.jpg" alt="Avatar" class="image">
+                  <div class="overlay link-text-a">
+					 
+					  <p><strong>Contemporary, Classic, Traditional, gloss, matt, woodgrain, metallic, timber, 5-piece, J-pull, handleless or maybe even magma titanium?</strong></p>
+				  
+					  <p>
+					  Whatever you need, we have it. Just tell us how quickly you want it and if you need it made to measure. 
+					  </p>
+					  
+					  <div class="product-offering">
+					  <a href="#">view ranges ></a>
+					  </div>
+				 			 			  
+				</div>    
+			  </div>	 	  
+			  	  
+			  
+			
+			  
+			  <div class="col-sm-12 text-center spscetop">
+				<h1>CABINETS</h1>   
+			  </div>   
+			  
+			   <div class="col-sm-12">
+				     <img src="ultragloss-baltic-blue-and-ultragloss-light-grey.jpg" alt="Avatar" class="image">
+                  <div class="overlay link-text-a">
+					 
+					  <p><strong>Strong, durable and functional are just some of the positive words associated with our Cabinets. Our rigid cabinet offering is one of the strongest in the industry, achieving a level H Fira Gold certificate.</strong></p>
+				  
+					  <p>
+					  So whether you want your cabinets rigid or ready to assemble, we have what you need for your next project.
+					  </p>
+					  
+					  <div class="product-offering">
+					  <a href="#">view cabinets ></a>
+					  </div>
+				 			 			  
+				</div>    
+			  </div>	 	  
+			  	  
+			 
+			  
+			  
+			 <div class="col-sm-12 text-center spscetop">
+				<h1>TO FINISH</h1>   
+			  </div>   
+			  
+			   <div class="col-sm-12">
+				     <img src="handles-close-up.jpg" alt="Avatar" class="image">
+                  <div class="overlay link-text-a">
+					 
+					  <p><strong>We have an extensive range of matching accessories, handles, lighting, drawers and storage – the finishing touches that really add value to a project.</strong></p>
+				  
+					  
+					  <div class="product-offering">
+					  <a href="#">view finishing touches ></a>
+					  </div>
+				 			 			  
+				</div>    
+			  </div>	 	  
+			  	    
+			  
+			  
+			  
+			  
+	 </div>
+	</div>	  
+	  
+	  
+	  
+	 <!--<div class="container spscetop">
+		  <div class="row">
+			  
+				<div class="col-sm-6">
+					
+					
+				<div class="img-comp-container">
+  <div class="img-comp-img">
+    <img src="Green_Kav.jpg" width="540" height="300">
+  </div>
+  <div class="img-comp-img img-comp-overlay">
+	  
+	  <div width="400" height="300"> 
+    <h3>Column 1</h3>
+				  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+				  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+		  
+	 </div>	  
+		  
+  </div>
+</div>	
+					
+					
+					
+				  
+				</div>
+			  
+				
+			  
+				<div class="col-sm-6">
+					
+				<div class="img-comp-container">
+  <div class="img-comp-img">
+    <img src="Herringbone.jpg" width="540" height="300">
+  </div>
+  <div class="img-comp-img img-comp-overlay">
+	  
+	  <div width="400" height="300">
+                  <h3>Column 3</h3>        
+				  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+				  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+	  
+	  </div>
+  </div>
+</div>	
+					
+					
+					
+				 
+				</div>
+
+		  </div>
+	  </div>-->
+	    
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  <!--<div class="container spscetop">
+		  <div class="row">
+			  
+				<div class="col-sm-4">
+				  <h3>Column 1</h3>
+				  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+				  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+				</div>
+			  
+				<div class="col-sm-4">
+				  <h3>Column 2</h3>
+				  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+				  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+				</div>
+			  
+				<div class="col-sm-4">
+				  <h3>Column 3</h3>        
+				  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+				  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+				</div>
+
+		  </div>
+	  </div>-->
+	  
+	  
+<div class="container spscetop downmargine">
+  <h2 class="text-center">Request a call back</h2>
+  <!--<p>In this example, we use <code>.needs-validation</code>, which will add the validation effect AFTER the form has been submitting (if there's anything missing).</p>
+  <p>Try to submit this form before filling out the input fields, to see the effect.</p>-->
+  <form action="/action_page.php" class="needs-validation" novalidate>
+	  
+	  
+	<div class="container spscetop"> 
+	<div class="row">	
+		
+	<div class="col-sm-4">  
+    <div class="form-group">
+      <label for="uname">Title:</label>
+      <input type="text" class="form-control" id="uname" placeholder="Enter title" name="title" required>
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Please fill out this field.</div>
+    </div>
+	
+	<div class="form-group">
+      <label for="uname">Mobile Number:</label>
+      <input type="text" class="form-control" id="uname" placeholder="Enter mobile number(required)" name="phone-mobile" required>
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Please fill out this field.</div>
+    </div>	
+	</div>
+	  
+	<div class="col-sm-4">  
+    <div class="form-group">
+      <label for="pwd">First name:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter first name" name="first-name" required>
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Please fill out this field.</div>
+    </div>
+		
+	 <div class="form-group">
+      <label for="pwd">Telephone (Landline):</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter landline number" name="phone-landline" required>
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Please fill out this field.</div>
+    </div>		
+	</div>
+		
+	<div class="col-sm-4">	
+     <div class="form-group">
+      <label for="pwd">Last name:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter last mame" name="last-name" required>
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Please fill out this field.</div>
+    </div>	
+		
+	 <div class="form-group">
+      <label for="pwd">Email:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter your email" name="email" required>
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Please fill out this field.</div>
+    </div>	
+				
+	</div>	
+	</div>
+		
+		
+	<div class="row">	
+	<div class="col-sm-12">	
+		
+	<div class="form-group">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" name="remember" required> I would like a design visit?
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Check this checkbox to continue.</div>
+      </label>
+    </div>	
+		
+		
+	</div>
+	</div>	
+		
+	</div>	
+	  
+	<div class="text-center">	
+    <button type="submit" class="btn btn-primary">Submit</button>
+	 </div>  
+	  
+	  
+  </form>
+</div>
+	  
+	  
+	  <div class="jumbotron text-center spscetop" style="margin-bottom:0">
+       <p>Footer</p>
+      </div>
+	  
+	
+	  
+	  
+	  
+	  
+<a id="back-to-top" href="#"><center><i class="fas fa-arrow-alt-circle-up"></i><br>Top</center></a>
+
+<script>
+	var btt = document.getElementById("back-to-top"),
+	body = document.body,
+	docElem = document.documentElement,
+	offset = 100,
+	scrollPos, docHeight,
+	//isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
+
+//Calculate document height
+docHeight = Math.max(body.scrollHeight, body.offsetHeight, docElem.clientHeight, docElem.scrollHeight, docElem.offsetHeight);
+
+if (docHeight != 'undefined'){
+	offset = docHeight / 4;
+}
+
+
+//Add scroll event listerner
+window.addEventListener("scroll", function(event){
+	scrollPos = body.scrollTop || docElem.scrollTop;
+	
+	btt.className = ( scrollPos > offset) ? "visible" : "";
+	
+	});
+
+
+/*Add click event listners
+	btt.addEventListener("click", function(event){
+		event.preventDefault();
+		
+		if (isFirefox){
+			docElem.scrollTop = 0;
+		}else{
+			body.scrollTop = 0;
+		}
+		
+	});
+	*/
+	
+
+	function setup(){
+			var location = window.location;
+			if(location.indexOf('?') != -1){
+				var paramString = location.substring(location.indexOf('?')+1, location.length);
+				var timeoutMins = paramString.split('=');
+				var timeoutMinsFirstTwoDigits = timeoutMins[1].substring(0,2).match(/^\d+$/);
+				if(timeoutMinsFirstTwoDigits == null){
+					document.getElementById('timeoutMins').innerHTML = '';
+				} else {
+					document.getElementById('timeoutMins').innerHTML = timeoutMinsFirstTwoDigits;
+				}
+			}	
+		}
+	  
+	  
+	  
+	  </script>
+				
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	  
+	  
+<script>
+/*Execute a function that will execute an image compare function for each element with the img-comp-overlay class:*/
+initComparisons();
+</script>	  
+	  
+	  
+	  
+	  
+	  <script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  var captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+</script>
+	  
+		
+  </body>
+</html>
